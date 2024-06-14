@@ -1,32 +1,36 @@
 import React from "react";
 import NotesList from "../components/NoteList";
 import HomePageAction from "../components/HomePageAction";
-import {getAllNotes } from "../utils/local-data";
+import { getActiveNotes } from "../utils/api";
+import LocaleContext from "../contexts/LocaleContext";
 
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
+function HomePage() {
+ 
+  const { locale } = React.useContext(LocaleContext);
+  
 
-    this.state = {
-      notes: getAllNotes(),
-    };
-  }
+  const [notes, setNotes] = React.useState([]);
+  React.useEffect(() => {
+    getActiveNotes().then(({ data }) => {
+      setNotes(data);
+    });
+  }, []);
 
-  render() {
-    return (
-      <main>
-        <section className="homepage">
-          <h2>Active Notes</h2>
-          <section className="note-list">
-            <NotesList notes={this.state.notes} />
-          </section>
-          <div className="homepage__action">
-            <HomePageAction />
-          </div>
+
+  return (
+    <main>
+      <section className="homepage">
+        <h2>{locale === "id" ? "Catatan Aktif" : "Active Notes"}</h2>
+        <section className="note-list">
+          <NotesList notes={notes} />
         </section>
-      </main>
-    );
-  }
+        <div className="homepage__action">
+          <HomePageAction />
+        </div>
+      </section>
+    </main>
+  );
 }
+
 
 export default HomePage;

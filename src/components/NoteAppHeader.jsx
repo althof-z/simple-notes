@@ -7,7 +7,7 @@ import LocaleContext from "../contexts/LocaleContext";
 import ThemeContext from "../contexts/ThemeContext";
 import PropTypes from "prop-types";
 
-function NoteAppHeader() {
+function NoteAppHeader({ logout }) {
   const { locale, toggleLocale } = useContext(LocaleContext);
   const { Theme, toggleTheme } = useContext(ThemeContext);
 
@@ -29,11 +29,11 @@ function NoteAppHeader() {
             </button>
           </li>
           <li>
-            {/* <Link to="/">
+            <Link to="/">
               <button onClick={logout} className="button-logout">
                 {name} <FiLogOut />
               </button>
-            </Link> */}
+            </Link>
           </li>
         </ul>
       </nav>
@@ -41,8 +41,8 @@ function NoteAppHeader() {
   );
 }
 
-// NoteAppHeader.propTypes = {
-//   logout: PropTypes.func.isRequired,
-// };
+NoteAppHeader.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
 
 export default NoteAppHeader;

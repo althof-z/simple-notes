@@ -4,15 +4,15 @@ import NoteEmptyList from "./NoteEmptyList";
 import PropTypes from "prop-types";
 
 function NoteList({ notes }) {
-  const Notes = notes.filter((note) => note.archived === false);
+  
 
-  if (Notes.length === 0) {
+  if (notes.length === 0) {
     return <NoteEmptyList />;
   }
 
   return (
     <div className="notes-list">
-      {Notes.map((note) => (
+      {notes.map((note) => (
         <NoteItem key={note.id} id={note.id} {...note} />
       ))}
     </div>
