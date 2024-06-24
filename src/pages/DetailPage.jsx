@@ -1,38 +1,52 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import NoteDetail from "../components/NoteDetail";
-import { getNote } from "../utils/local-data";
-import PropTypes from "prop-types";
+import { getNote } from "../utils/api";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function DetailPageWrapper() {
+function DetailPage() {
   const { id } = useParams();
-  return <DetailPage id={id} />;
-}
+  const navigate = useNavigate();
+  const [note, setNote] = useState(null); // Initialize note state with null
 
-class DetailPage extends React.Component {
-  constructor(props) {
-    super(props);
+  useEffect(() => {
+    getNote(id).then(({ data }) => {
+      setNote(data);
+    });
+  }, [id]);
 
-    this.state = {
-      note: getNote(props.id),
-    };
+  React.useEffect(() => {
+    getNote(id).then(({ data }) => {
+      setNote(data);
+    });
+  }, []);
+
+  if (note === null) { // Check if note is null, indicating loading
+    return <h1>Loading...</h1>;
   }
 
-  render() {
-    if (this.state.note === undefined) {
-      return <h1>No Available Note</h1>;
+  if (note === undefined) { // Check if note is undefined, indicating no available note
+    return <h1>No Available Note</h1>;
+  }
+
+  async function onDeleteHandler(id) {
+    try {
+      await deleteNote(id);
+      // update the Notes state from network.js
+      const { data } = await getActiveNotes();
+      setNote(data);
+      navigate("/");
+    } catch (error) {
+      console.error("Error deleting note:", error);
     }
-
-    return (
-      <section>
-        <NoteDetail {...this.state.note} />
-      </section>
-    );
   }
+
+  return (
+    <section>
+      <NoteDetail {...note} onDelete={onDeleteHandler} />
+    </section>
+  );
 }
 
-DetailPage.propTypes = {
-  id: PropTypes.string.isRequired,
-};
-
-export default DetailPageWrapper;
+export default DetailPage;
