@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { showFormattedDate } from "../utils/index";
 import DeleteButton from "./DeleteButton";
 
-function NoteDetail({ title, createdAt, body, id }) {
+function NoteDetail({ title, createdAt, body, id, onDelete}) {
   const formattedDate = showFormattedDate(createdAt);
 
   return (
@@ -12,7 +12,7 @@ function NoteDetail({ title, createdAt, body, id }) {
       <p className="detail-page__createdAt">{formattedDate}</p>
       <div className="detail-page__body">{body}</div>
       <div className="detail-page__action">
-        <DeleteButton id={id} />
+        <DeleteButton id={id} onDelete={onDelete}/>
       </div>
     </section>
   );
@@ -23,6 +23,8 @@ NoteDetail.propTypes = {
   createdAt: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
+
 
 export default NoteDetail;

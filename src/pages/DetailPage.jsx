@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import { useParams } from "react-router-dom";
 import NoteDetail from "../components/NoteDetail";
-import { getNote } from "../utils/api";
-import { useState, useEffect } from "react";
+import { getNote, deleteNote, getActiveNotes} from "../utils/api";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 function DetailPage() {
@@ -48,5 +48,6 @@ function DetailPage() {
     </section>
   );
 }
+
 
 export default DetailPage;
