@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"; // Import useState and useEf
 import { useParams } from "react-router-dom";
 import NoteDetail from "../components/NoteDetail";
 import { getNote, deleteNote, getActiveNotes} from "../utils/api";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 function DetailPage() {

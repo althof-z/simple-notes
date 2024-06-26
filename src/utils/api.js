@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const BASE_URL = 'https://notes-api.dicoding.dev/v1';
 
 function getAccessToken() {
@@ -30,9 +32,11 @@ async function login({ email, password }) {
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
-    alert(responseJson.message);
+    toast.error(responseJson.message);
     return { error: true, data: null };
   }
+
+  toast.success(responseJson.message);
 
   return { error: false, data: responseJson.data };
 }
@@ -49,9 +53,10 @@ async function register({ name, email, password }) {
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
-    alert(responseJson.message);
+    toast.error(responseJson.message);
     return { error: true };
   }
+  toast.success(responseJson.message);
 
   return { error: false };
 }
@@ -79,8 +84,11 @@ async function addNote({ title, body }) {
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
+    toast.error(responseJson.message);
     return { error: true, data: null };
   }
+
+  toast.success(responseJson.message);
 
   return { error: false, data: responseJson.data };
 }
@@ -154,8 +162,11 @@ async function deleteNote(id) {
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
+    toast.error(responseJson.message);
     return { error: true, data: null };
   }
+  
+  toast.success(responseJson.message);
 
   return { error: false, data: responseJson.data };
 }

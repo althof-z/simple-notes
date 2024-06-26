@@ -1,5 +1,4 @@
 import React from "react";
-import { addNote } from "../utils/local-data";
 import PropTypes from "prop-types";
 
 class NoteInput extends React.Component {
