@@ -1,13 +1,11 @@
-import React from "react";
-import NotesList from "../components/NoteList";
-import HomePageAction from "../components/HomePageAction";
-import { getActiveNotes } from "../utils/api";
-import LocaleContext from "../contexts/LocaleContext";
+import React from 'react';
+import NotesList from '../components/NoteList';
+import HomePageAction from '../components/HomePageAction';
+import { getActiveNotes } from '../utils/api';
+import LocaleContext from '../contexts/LocaleContext';
 
 function HomePage() {
- 
   const { locale } = React.useContext(LocaleContext);
-  
 
   const [notes, setNotes] = React.useState([]);
   React.useEffect(() => {
@@ -16,11 +14,10 @@ function HomePage() {
     });
   }, []);
 
-
   return (
     <main>
       <section className="homepage">
-        <h2>{locale === "id" ? "Catatan Aktif" : "Active Notes"}</h2>
+        <h2>{locale === 'id' ? 'Catatan Aktif' : 'Active Notes'}</h2>
         <section className="note-list">
           <NotesList notes={notes} />
         </section>
@@ -31,6 +28,5 @@ function HomePage() {
     </main>
   );
 }
-
 
 export default HomePage;

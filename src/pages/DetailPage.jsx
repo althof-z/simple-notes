@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
-import { useParams } from "react-router-dom";
-import NoteDetail from "../components/NoteDetail";
-import { getNote, deleteNote, getActiveNotes } from "../utils/api";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react'; // Import useState and useEffect
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import NoteDetail from '../components/NoteDetail';
+import { getNote, deleteNote, getActiveNotes } from '../utils/api';
 
 function DetailPage() {
   const { id } = useParams();
@@ -45,9 +45,9 @@ function DetailPage() {
       // update the Notes state from network.js
       const { data } = await getActiveNotes();
       setNote(data);
-      navigate("/");
+      navigate('/');
     } catch (error) {
-      console.error("Error deleting note:", error);
+      console.error('Error deleting note:', error);
     }
   }
 

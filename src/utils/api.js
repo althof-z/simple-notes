@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 const BASE_URL = 'https://notes-api.dicoding.dev/v1';
 
@@ -165,7 +165,7 @@ async function deleteNote(id) {
     toast.error(responseJson.message);
     return { error: true, data: null };
   }
-  
+
   toast.success(responseJson.message);
 
   return { error: false, data: responseJson.data };
