@@ -10,6 +10,6 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <NoteApp />
-    <ToastContainer theme="dark" stacked />
+    <ToastContainer className="toast-container" theme="dark" stacked />
   </BrowserRouter>
 );

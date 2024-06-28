@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import { useParams } from "react-router-dom";
 import NoteDetail from "../components/NoteDetail";
-import { getNote, deleteNote, getActiveNotes} from "../utils/api";
+import { getNote, deleteNote, getActiveNotes } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 function DetailPage() {
@@ -21,12 +21,22 @@ function DetailPage() {
     });
   }, []);
 
-  if (note === null) { // Check if note is null, indicating loading
-    return <h1>Loading...</h1>;
+  if (note === null) {
+    // Check if note is null, indicating loading
+    return (
+      <section className="detail-page">
+        <h1>Loading...</h1>
+      </section>
+    );
   }
 
-  if (note === undefined) { // Check if note is undefined, indicating no available note
-    return <h1>No Available Note</h1>;
+  if (note === undefined) {
+    // Check if note is undefined, indicating no available note
+    return (
+      <section className="detail-page">
+        <h1>No Available Note</h1>
+      </section>
+    );
   }
 
   async function onDeleteHandler(id) {
@@ -47,6 +57,5 @@ function DetailPage() {
     </section>
   );
 }
-
 
 export default DetailPage;
