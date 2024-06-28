@@ -25,6 +25,12 @@
   --on-surface: #FFFFFF;
 }
 
+.toast-container {
+  position: fixed;
+  top: 80px; /* Adjust this value based on your header height */
+
+}
+
 .Toastify__toast--default {
   background-color: var(--background);
   color: var(--on-background);

@@ -1,9 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { showFormattedDate } from "../utils/index";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { showFormattedDate } from '../utils/index';
 
-function NoteItem({ title, createdAt, body, id }) {
+function NoteItem({
+  title, createdAt, body, id,
+}) {
   const formattedDate = showFormattedDate(createdAt);
   return (
     <div className="note-item">

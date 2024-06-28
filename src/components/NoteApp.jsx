@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Route, Routes, Link } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import DetailPage from "../pages/DetailPage";
-import InputPage from "../pages/InputPage";
-import { getUserLogged, putAccessToken } from "../utils/api";
-import RegisterPage from "../pages/RegisterPage";
-import LoginPage from "../pages/LoginPage";
-import NoteAppHeader from "./NoteAppHeader";
-import LocaleContext from "../contexts/LocaleContext";
-import ThemeContext from "../contexts/ThemeContext";
-import { HiOutlineLanguage } from "react-icons/hi2";
-import { FaRegSun, FaMoon } from "react-icons/fa6";
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, Link } from 'react-router-dom';
+import { HiOutlineLanguage } from 'react-icons/hi2';
+import { FaRegSun, FaMoon } from 'react-icons/fa6';
+import HomePage from '../pages/HomePage';
+import DetailPage from '../pages/DetailPage';
+import InputPage from '../pages/InputPage';
+import { getUserLogged, putAccessToken } from '../utils/api';
+import RegisterPage from '../pages/RegisterPage';
+import LoginPage from '../pages/LoginPage';
+import NoteAppHeader from './NoteAppHeader';
+import LocaleContext from '../contexts/LocaleContext';
+import ThemeContext from '../contexts/ThemeContext';
 
 function NoteApp() {
   const [authed, setAuthed] = useState(null);
   const [initializing, setInitializing] = useState(true);
-  const [locale, setLocale] = useState(localStorage.getItem("locale") || "id");
-  const [Theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [locale, setLocale] = useState(localStorage.getItem('locale') || 'id');
+  const [Theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   const toggleLocale = () => {
-    const newLocale = locale === "id" ? "en" : "id";
-    localStorage.setItem("locale", newLocale);
+    const newLocale = locale === 'id' ? 'en' : 'id';
+    localStorage.setItem('locale', newLocale);
     setLocale(newLocale);
   };
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", Theme);
+    document.documentElement.setAttribute('data-theme', Theme);
   }, [Theme]);
 
   const toggleTheme = () => {
-    const newTheme = Theme === "light" ? "dark" : "light";
-    localStorage.setItem("theme", newTheme);
+    const newTheme = Theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
     setTheme(newTheme);
   };
 
@@ -42,7 +42,7 @@ function NoteApp() {
 
   const onLogout = () => {
     setAuthed(null);
-    putAccessToken("");
+    putAccessToken('');
   };
 
   useEffect(() => {
@@ -63,13 +63,13 @@ function NoteApp() {
           <div className="app-container">
             <header>
               <h1>
-                <Link to="/">{locale === "id" ? "Aplikasi Catatan" : "Personal Notes"}</Link>
+                <Link to="/">{locale === 'id' ? 'Aplikasi Catatan' : 'Personal Notes'}</Link>
               </h1>
               <nav className="navigation">
                 <ul>
                   <li>
                     <button onClick={toggleTheme} className="button-logout">
-                      {Theme === "light" ? <FaRegSun /> : <FaMoon />}
+                      {Theme === 'light' ? <FaRegSun /> : <FaMoon />}
                     </button>
                   </li>
                   <li>
