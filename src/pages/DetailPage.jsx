@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Import useState and useEffect
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import NoteDetail from '../components/NoteDetail';
 import { getNote, deleteNote, getActiveNotes } from '../utils/api';
 
@@ -15,11 +15,17 @@ function DetailPage() {
     });
   }, [id]);
 
-  React.useEffect(() => {
-    getNote(id).then(({ data }) => {
+  const onDeleteHandler = async (noteId) => {
+    try {
+      await deleteNote(noteId);
+      // update the Notes state from network.js
+      const { data } = await getActiveNotes();
       setNote(data);
-    });
-  }, []);
+      navigate('/');
+    } catch (error) {
+      toast.error('Failed to delete note');
+    }
+  };
 
   if (note === null) {
     // Check if note is null, indicating loading
@@ -39,21 +45,14 @@ function DetailPage() {
     );
   }
 
-  async function onDeleteHandler(id) {
-    try {
-      await deleteNote(id);
-      // update the Notes state from network.js
-      const { data } = await getActiveNotes();
-      setNote(data);
-      navigate('/');
-    } catch (error) {
-      console.error('Error deleting note:', error);
-    }
-  }
-
   return (
-    <section>
-      <NoteDetail {...note} onDelete={onDeleteHandler} />
+    <section className="detail-page">
+      <NoteDetail
+        id={note.id}
+        createdAt={note.createdAt}
+        body={note.body}
+        onDelete={() => onDeleteHandler(note.id)}
+      />
     </section>
   );
 }

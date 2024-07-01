@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { showFormattedDate } from '../utils/index';
+import showFormattedDate from '../utils/index';
 
 function NoteItem({
   title, createdAt, body, id,

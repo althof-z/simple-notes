@@ -47,8 +47,6 @@ function NoteAppHeader({ logout }) {
                 onClick={logout}
                 className="button-logout"
               >
-                {name}
-                {' '}
                 <FiLogOut />
               </button>
             </Link>

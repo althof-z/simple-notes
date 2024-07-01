@@ -58,22 +58,43 @@ function NoteApp() {
 
   if (authed === null) {
     return (
-      <ThemeContext.Provider value={{ Theme, toggleTheme }}>
-        <LocaleContext.Provider value={{ locale, toggleLocale }}>
+      <ThemeContext.Provider
+        value={React.useMemo(
+          () => ({ Theme, toggleTheme }),
+          [Theme, toggleTheme],
+        )}
+      >
+        <LocaleContext.Provider
+          value={React.useMemo(
+            () => ({ locale, toggleLocale }),
+            [locale, toggleLocale],
+          )}
+        >
           <div className="app-container">
             <header>
               <h1>
-                <Link to="/">{locale === 'id' ? 'Aplikasi Catatan' : 'Personal Notes'}</Link>
+                <Link to="/">
+                  {locale === 'id' ? 'Aplikasi Catatan' : 'Personal Notes'}
+                </Link>
               </h1>
               <nav className="navigation">
                 <ul>
                   <li>
-                    <button onClick={toggleTheme} className="button-logout">
+                    <button
+                      type="button"
+                      onClick={toggleTheme}
+                      className="button-logout"
+                    >
                       {Theme === 'light' ? <FaRegSun /> : <FaMoon />}
                     </button>
                   </li>
                   <li>
-                    <button onClick={toggleLocale} className="button-logout">
+                    <button
+                      type="button"
+                      aria-label="LogOut"
+                      onClick={toggleLocale}
+                      className="button-logout"
+                    >
                       <HiOutlineLanguage />
                     </button>
                   </li>
@@ -82,7 +103,10 @@ function NoteApp() {
             </header>
             <main>
               <Routes>
-                <Route path="/*" element={<LoginPage loginSuccess={onLoginSuccess} />} />
+                <Route
+                  path="/*"
+                  element={<LoginPage loginSuccess={onLoginSuccess} />}
+                />
                 <Route path="/register" element={<RegisterPage />} />
               </Routes>
             </main>
@@ -93,8 +117,18 @@ function NoteApp() {
   }
 
   return (
-    <ThemeContext.Provider value={{ Theme, toggleTheme }}>
-      <LocaleContext.Provider value={{ locale, toggleLocale }}>
+    <ThemeContext.Provider
+      value={React.useMemo(
+        () => ({ Theme, toggleTheme }),
+        [Theme, toggleTheme],
+      )}
+    >
+      <LocaleContext.Provider
+        value={React.useMemo(
+          () => ({ locale, toggleLocale }),
+          [locale, toggleLocale],
+        )}
+      >
         <div className="app-container">
           <NoteAppHeader logout={onLogout} />
           <Routes>
