@@ -8,20 +8,19 @@ function RegisterPage() {
   const navigate = useNavigate();
   const { locale } = React.useContext(LocaleContext);
 
-  async function onRegisterHandler(user) {
+  const onRegisterHandler = async (user) => {
     const { error } = await register(user);
     if (!error) {
       navigate('/');
     }
-  }
+  };
 
   return (
     <section className="register-page">
-      <h2>{locale === 'id' ? 'Jangan Gunakan Data Pribadi' : 'Dont Use Your Personal Data'}</h2>
+      <h2>{locale === 'id' ? 'Jangan Gunakan Data Pribadi' : 'Don\'t Use Your Personal Data'}</h2>
       <RegisterInput register={onRegisterHandler} />
       <p>
         {locale === 'id' ? 'Balik Ke' : 'Back To'}
-        {' '}
         <Link to="/">Login</Link>
       </p>
     </section>

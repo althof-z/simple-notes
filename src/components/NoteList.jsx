@@ -11,14 +11,25 @@ function NoteList({ notes }) {
   return (
     <div className="notes-list">
       {notes.map((note) => (
-        <NoteItem key={note.id} id={note.id} {...note} />
+        <NoteItem
+          key={note.id}
+          id={note.id}
+          createdAt={note.createdAt}
+          body={note.body}
+        />
       ))}
     </div>
   );
 }
 
 NoteList.propTypes = {
-  notes: PropTypes.array.isRequired,
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default NoteList;

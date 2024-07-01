@@ -14,10 +14,26 @@ function RegisterInput({ register }) {
 
   return (
     <form onSubmit={onSubmitHandler} className="input-register">
-      <input type="text" placeholder="Name" value={name} onChange={onNameChange} />
-      <input type="email" placeholder="Email" value={email} onChange={onEmailChange} />
-      <input type="password" placeholder="Password" autoComplete="current-password" value={password} onChange={onPasswordChange} />
-      <button>Register</button>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={onNameChange}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={onEmailChange}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        autoComplete="current-password"
+        value={password}
+        onChange={onPasswordChange}
+      />
+      <button type="button">Register</button>
     </form>
   );
 }

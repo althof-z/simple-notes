@@ -7,13 +7,14 @@ import LocaleContext from '../contexts/LocaleContext';
 
 function LoginPage({ loginSuccess }) {
   const { locale } = React.useContext(LocaleContext);
-  async function onLogin({ email, password }) {
+
+  const onLogin = async ({ email, password }) => {
     const { error, data } = await login({ email, password });
 
     if (!error) {
       loginSuccess(data);
     }
-  }
+  };
 
   return (
     <section className="login-page">
